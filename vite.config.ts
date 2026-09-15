@@ -11,7 +11,7 @@ const defaultRepo = 'sbhcj-logo-gallery'
 const [owner, repo] = (env.GITHUB_REPOSITORY ?? `${defaultOwner}/${defaultRepo}`).split('/')
 const isUserOrOrgPagesRepo = repo === `${owner}.github.io`
 const base = env.GITHUB_ACTIONS ? (isUserOrOrgPagesRepo ? '/' : `/${repo}/`) : '/'
-const ogImageUrl = `https://${owner}.github.io/${repo}/media/logo-16.jpg`
+const ogImageUrl = `https://${owner}.github.io${base}media/logo-16.jpg`
 
 export default defineConfig({
   plugins: [
