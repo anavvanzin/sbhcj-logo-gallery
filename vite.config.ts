@@ -8,10 +8,13 @@ const env = (
 ).process?.env ?? {}
 const defaultOwner = 'anavvanzin'
 const defaultRepo = 'sbhcj-logo-gallery'
-const [owner, repo] = (env.GITHUB_REPOSITORY ?? `${defaultOwner}/${defaultRepo}`).split('/')
+const repositoryParts = env.GITHUB_REPOSITORY?.split('/') ?? []
+const owner = repositoryParts[0] || defaultOwner
+const repo = repositoryParts[1] || defaultRepo
 const isUserOrOrgPagesRepo = repo === `${owner}.github.io`
-const base = env.GITHUB_ACTIONS ? (isUserOrOrgPagesRepo ? '/' : `/${repo}/`) : '/'
-const ogImageUrl = `https://${owner}.github.io${base}media/logo-16.jpg`
+const pagesPath = isUserOrOrgPagesRepo ? '/' : `/${repo}/`
+const base = './'
+const ogImageUrl = `https://${owner}.github.io${pagesPath}media/logo-16.jpg`
 
 export default defineConfig({
   plugins: [
